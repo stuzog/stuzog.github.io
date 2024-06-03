@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Pressure and IMU Mapping | WARBL2 Configuration Tool</title>
+  <meta name="description" content="8 Pressure and IMU Mapping | WARBL2 Configuration Tool" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Pressure and IMU Mapping | WARBL2 Configuration Tool" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Pressure and IMU Mapping | WARBL2 Configuration Tool" />
+  
+  
+  
+
+<meta name="author" content="Compiled by Stuart Hertzog" />
+
+
+<meta name="date" content="2024-06-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="note-trigger-and-register-control-1.html"/>
+<link rel="next" href="drones-control.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-use-this-site"><i class="fa fa-check"></i><b>1.1</b> How To Use This Site</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="table-of-contents.html"><a href="table-of-contents.html"><i class="fa fa-check"></i><b>2</b> Table of Contents</a></li>
+<li class="chapter" data-level="3" data-path="top-panel.html"><a href="top-panel.html"><i class="fa fa-check"></i><b>3</b> Top Panel</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="top-panel.html"><a href="top-panel.html#volume-icon"><i class="fa fa-check"></i><b>3.1</b> Volume Icon</a></li>
+<li class="chapter" data-level="3.2" data-path="top-panel.html"><a href="top-panel.html#midi-console-button"><i class="fa fa-check"></i><b>3.2</b> MIDI Console Button</a></li>
+<li class="chapter" data-level="3.3" data-path="top-panel.html"><a href="top-panel.html#midi-note-display"><i class="fa fa-check"></i><b>3.3</b> MIDI Note Display</a></li>
+<li class="chapter" data-level="3.4" data-path="top-panel.html"><a href="top-panel.html#warbl-firmware-version"><i class="fa fa-check"></i><b>3.4</b> WARBL Firmware Version</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="instrument-settings.html"><a href="instrument-settings.html"><i class="fa fa-check"></i><b>4</b> Instrument Settings</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="instrument-settings.html"><a href="instrument-settings.html#per-instrument-settings"><i class="fa fa-check"></i><b>4.1</b> Per-Instrument Settings</a></li>
+<li class="chapter" data-level="4.2" data-path="instrument-settings.html"><a href="instrument-settings.html#default-instrument"><i class="fa fa-check"></i><b>4.2</b> Default Instrument</a></li>
+<li class="chapter" data-level="4.3" data-path="instrument-settings.html"><a href="instrument-settings.html#fingering-pattern"><i class="fa fa-check"></i><b>4.3</b> Fingering Pattern</a></li>
+<li class="chapter" data-level="4.4" data-path="instrument-settings.html"><a href="instrument-settings.html#transpose-menu"><i class="fa fa-check"></i><b>4.4</b> Transpose Menu</a></li>
+<li class="chapter" data-level="4.5" data-path="instrument-settings.html"><a href="instrument-settings.html#configure-custom-fingering"><i class="fa fa-check"></i><b>4.5</b> Configure Custom Fingering</a></li>
+<li class="chapter" data-level="4.6" data-path="instrument-settings.html"><a href="instrument-settings.html#note-channel"><i class="fa fa-check"></i><b>4.6</b> Note Channel</a></li>
+<li class="chapter" data-level="4.7" data-path="instrument-settings.html"><a href="instrument-settings.html#bend-range"><i class="fa fa-check"></i><b>4.7</b> Bend Range</a></li>
+<li class="chapter" data-level="4.8" data-path="instrument-settings.html"><a href="instrument-settings.html#transient-note-filter-ms"><i class="fa fa-check"></i><b>4.8</b> Transient Note Filter (mS)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="finger-vibrato-and-slide.html"><a href="finger-vibrato-and-slide.html"><i class="fa fa-check"></i><b>5</b> Finger Vibrato and Slide</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="finger-vibrato-and-slide.html"><a href="finger-vibrato-and-slide.html#slide"><i class="fa fa-check"></i><b>5.1</b> Slide</a></li>
+<li class="chapter" data-level="5.2" data-path="finger-vibrato-and-slide.html"><a href="finger-vibrato-and-slide.html#vibrato"><i class="fa fa-check"></i><b>5.2</b> Vibrato</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="finger-vibrato-and-slide.html"><a href="finger-vibrato-and-slide.html#custom-vibrato"><i class="fa fa-check"></i><b>5.2.1</b> Custom Vibrato</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="finger-vibrato-and-slide.html"><a href="finger-vibrato-and-slide.html#legato-slidevibrato"><i class="fa fa-check"></i><b>5.3</b> Legato Slide/Vibrato</a></li>
+<li class="chapter" data-level="5.4" data-path="finger-vibrato-and-slide.html"><a href="finger-vibrato-and-slide.html#advanced-pitch-bend-settings"><i class="fa fa-check"></i><b>5.4</b> Advanced Pitch Bend Settings</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="finger-vibrato-and-slide.html"><a href="finger-vibrato-and-slide.html#section"><i class="fa fa-check"></i><b>5.4.1</b> </a></li>
+<li class="chapter" data-level="5.4.2" data-path="finger-vibrato-and-slide.html"><a href="finger-vibrato-and-slide.html#finger-sensing-distance"><i class="fa fa-check"></i><b>5.4.2</b> Finger-Sensing Distance</a></li>
+<li class="chapter" data-level="5.4.3" data-path="finger-vibrato-and-slide.html"><a href="finger-vibrato-and-slide.html#vibrato-depth-cents"><i class="fa fa-check"></i><b>5.4.3</b> Vibrato depth (cents)</a></li>
+<li class="chapter" data-level="5.4.4" data-path="finger-vibrato-and-slide.html"><a href="finger-vibrato-and-slide.html#legato-slide-limit-semitones"><i class="fa fa-check"></i><b>5.4.4</b> Legato Slide Limit (semitones)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="finger-vibrato-and-slide.html"><a href="finger-vibrato-and-slide.html#send-pitch-bend-immediately-before-note-on"><i class="fa fa-check"></i><b>5.5</b> Send Pitch Bend Immediately Before Note On</a></li>
+<li class="chapter" data-level="5.6" data-path="finger-vibrato-and-slide.html"><a href="finger-vibrato-and-slide.html#send-notes-as-legato"><i class="fa fa-check"></i><b>5.6</b> Send Notes As Legato</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html"><i class="fa fa-check"></i><b>6</b> Note Trigger and Register Control</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html#single-register"><i class="fa fa-check"></i><b>6.1</b> Single Register</a></li>
+<li class="chapter" data-level="6.2" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html#overblow"><i class="fa fa-check"></i><b>6.2</b> Overblow</a></li>
+<li class="chapter" data-level="6.3" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html#thumb-register"><i class="fa fa-check"></i><b>6.3</b> Thumb Register</a></li>
+<li class="chapter" data-level="6.4" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html#bell-register"><i class="fa fa-check"></i><b>6.4</b> Bell Register</a></li>
+<li class="chapter" data-level="6.5" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html#calibrate-at-startup"><i class="fa fa-check"></i><b>6.5</b> Calibrate at startup</a></li>
+<li class="chapter" data-level="6.6" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html#learn-or-enter-pressure"><i class="fa fa-check"></i><b>6.6</b> Learn or Enter Pressure</a></li>
+<li class="chapter" data-level="6.7" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html#invert-thumbbell-switch"><i class="fa fa-check"></i><b>6.7</b> Invert Thumb/Bell Switch</a></li>
+<li class="chapter" data-level="6.8" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html#bagless-mode"><i class="fa fa-check"></i><b>6.8</b> Bagless Mode</a></li>
+<li class="chapter" data-level="6.9" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html#bagbreath"><i class="fa fa-check"></i><b>6.9</b> Bag/Breath</a></li>
+<li class="chapter" data-level="6.10" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html#advanced-register-control-settings"><i class="fa fa-check"></i><b>6.10</b> Advanced Register Control Settings</a>
+<ul>
+<li class="chapter" data-level="6.10.1" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html#threshold"><i class="fa fa-check"></i><b>6.10.1</b> Threshold</a></li>
+<li class="chapter" data-level="6.10.2" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html#multiplier"><i class="fa fa-check"></i><b>6.10.2</b> Multiplier</a></li>
+<li class="chapter" data-level="6.10.3" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html#hysteresis"><i class="fa fa-check"></i><b>6.10.3</b> Hysteresis</a></li>
+<li class="chapter" data-level="6.10.4" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html#jump-and-drop-times"><i class="fa fa-check"></i><b>6.10.4</b> Jump and Drop Times</a></li>
+<li class="chapter" data-level="6.10.5" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html#bag-and-breath-defaults-buttons"><i class="fa fa-check"></i><b>6.10.5</b> Bag and Breath Defaults Buttons</a></li>
+</ul></li>
+<li class="chapter" data-level="6.11" data-path="note-trigger-and-register-control.html"><a href="note-trigger-and-register-control.html#pressure-graph"><i class="fa fa-check"></i><b>6.11</b> Pressure Graph</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html"><i class="fa fa-check"></i><b>7</b> Note Trigger and Register Control</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html#single-register-1"><i class="fa fa-check"></i><b>7.1</b> Single Register</a></li>
+<li class="chapter" data-level="7.2" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html#overblow-1"><i class="fa fa-check"></i><b>7.2</b> Overblow</a></li>
+<li class="chapter" data-level="7.3" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html#thumb-register-1"><i class="fa fa-check"></i><b>7.3</b> Thumb Register</a></li>
+<li class="chapter" data-level="7.4" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html#bell-register-1"><i class="fa fa-check"></i><b>7.4</b> Bell Register</a></li>
+<li class="chapter" data-level="7.5" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html#calibrate-at-startup-1"><i class="fa fa-check"></i><b>7.5</b> Calibrate at startup</a></li>
+<li class="chapter" data-level="7.6" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html#learn-or-enter-pressure-1"><i class="fa fa-check"></i><b>7.6</b> Learn or Enter Pressure</a></li>
+<li class="chapter" data-level="7.7" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html#invert-thumbbell-switch-1"><i class="fa fa-check"></i><b>7.7</b> Invert Thumb/Bell Switch</a></li>
+<li class="chapter" data-level="7.8" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html#bagless-mode-1"><i class="fa fa-check"></i><b>7.8</b> Bagless Mode</a></li>
+<li class="chapter" data-level="7.9" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html#bagbreath-1"><i class="fa fa-check"></i><b>7.9</b> Bag/Breath</a></li>
+<li class="chapter" data-level="7.10" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html#advanced-register-control-settings-1"><i class="fa fa-check"></i><b>7.10</b> Advanced Register Control Settings</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html#threshold-1"><i class="fa fa-check"></i><b>7.10.1</b> Threshold</a></li>
+<li class="chapter" data-level="7.10.2" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html#multiplier-1"><i class="fa fa-check"></i><b>7.10.2</b> Multiplier</a></li>
+<li class="chapter" data-level="7.10.3" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html#hysteresis-1"><i class="fa fa-check"></i><b>7.10.3</b> Hysteresis</a></li>
+<li class="chapter" data-level="7.10.4" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html#jump-and-drop-times-1"><i class="fa fa-check"></i><b>7.10.4</b> Jump and Drop Times</a></li>
+<li class="chapter" data-level="7.10.5" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html#bag-and-breath-defaults-buttons-1"><i class="fa fa-check"></i><b>7.10.5</b> Bag and Breath Defaults Buttons</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="note-trigger-and-register-control-1.html"><a href="note-trigger-and-register-control-1.html#pressure-graph-1"><i class="fa fa-check"></i><b>7.11</b> Pressure Graph</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="pressure-and-imu-mapping.html"><a href="pressure-and-imu-mapping.html"><i class="fa fa-check"></i><b>8</b> Pressure and IMU Mapping</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="pressure-and-imu-mapping.html"><a href="pressure-and-imu-mapping.html#pressure-mapping"><i class="fa fa-check"></i><b>8.1</b> Pressure Mapping</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="pressure-and-imu-mapping.html"><a href="pressure-and-imu-mapping.html#force-max-velocity"><i class="fa fa-check"></i><b>8.1.1</b> Force Max Velocity</a></li>
+<li class="chapter" data-level="8.1.2" data-path="pressure-and-imu-mapping.html"><a href="pressure-and-imu-mapping.html#pitch-expression"><i class="fa fa-check"></i><b>8.1.2</b> Pitch Expression</a></li>
+<li class="chapter" data-level="8.1.3" data-path="pressure-and-imu-mapping.html"><a href="pressure-and-imu-mapping.html#pitch-expression-depth"><i class="fa fa-check"></i><b>8.1.3</b> Pitch Expression Depth</a></li>
+<li class="chapter" data-level="8.1.4" data-path="pressure-and-imu-mapping.html"><a href="pressure-and-imu-mapping.html#override"><i class="fa fa-check"></i><b>8.1.4</b> Override…</a></li>
+<li class="chapter" data-level="8.1.5" data-path="pressure-and-imu-mapping.html"><a href="pressure-and-imu-mapping.html#send-pressure-mapping"><i class="fa fa-check"></i><b>8.1.5</b> Send Pressure Mapping</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="pressure-and-imu-mapping.html"><a href="pressure-and-imu-mapping.html#imu-mapping"><i class="fa fa-check"></i><b>8.2</b> IMU Mapping</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="pressure-and-imu-mapping.html"><a href="pressure-and-imu-mapping.html#pitchbend-vibrato"><i class="fa fa-check"></i><b>8.2.1</b> Pitchbend Vibrato</a></li>
+<li class="chapter" data-level="8.2.2" data-path="pressure-and-imu-mapping.html"><a href="pressure-and-imu-mapping.html#roll-elevation-and-yaw-mapping"><i class="fa fa-check"></i><b>8.2.2</b> Roll, Elevation, and Yaw Mapping</a></li>
+<li class="chapter" data-level="8.2.3" data-path="pressure-and-imu-mapping.html"><a href="pressure-and-imu-mapping.html#recentering-yaw"><i class="fa fa-check"></i><b>8.2.3</b> Recentering Yaw</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="drones-control.html"><a href="drones-control.html"><i class="fa fa-check"></i><b>9</b> Drones Control</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="drones-control.html"><a href="drones-control.html#no-drone-control"><i class="fa fa-check"></i><b>9.1</b> No Drone Control</a></li>
+<li class="chapter" data-level="9.2" data-path="drones-control.html"><a href="drones-control.html#use-secret-button"><i class="fa fa-check"></i><b>9.2</b> Use Secret Button</a></li>
+<li class="chapter" data-level="9.3" data-path="drones-control.html"><a href="drones-control.html#turn-onoff-with-chanter"><i class="fa fa-check"></i><b>9.3</b> Turn On/Off With Chanter</a></li>
+<li class="chapter" data-level="9.4" data-path="drones-control.html"><a href="drones-control.html#use-pressure"><i class="fa fa-check"></i><b>9.4</b> Use Pressure</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="drones-control.html"><a href="drones-control.html#learn"><i class="fa fa-check"></i><b>9.4.1</b> Learn</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="button-behavior.html"><a href="button-behavior.html"><i class="fa fa-check"></i><b>10</b> Button Behavior</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="button-behavior.html"><a href="button-behavior.html#momentary"><i class="fa fa-check"></i><b>10.1</b> Momentary</a></li>
+<li class="chapter" data-level="10.2" data-path="button-behavior.html"><a href="button-behavior.html#none"><i class="fa fa-check"></i><b>10.2</b> None</a></li>
+<li class="chapter" data-level="10.3" data-path="button-behavior.html"><a href="button-behavior.html#send-midi-message"><i class="fa fa-check"></i><b>10.3</b> Send MIDI Message</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="button-behavior.html"><a href="button-behavior.html#note-onnote-off"><i class="fa fa-check"></i><b>10.3.1</b> Note On/Note Off</a></li>
+<li class="chapter" data-level="10.3.2" data-path="button-behavior.html"><a href="button-behavior.html#cc-messages"><i class="fa fa-check"></i><b>10.3.2</b> CC Messages</a></li>
+<li class="chapter" data-level="10.3.3" data-path="button-behavior.html"><a href="button-behavior.html#send-pc"><i class="fa fa-check"></i><b>10.3.3</b> Send PC</a></li>
+<li class="chapter" data-level="10.3.4" data-path="button-behavior.html"><a href="button-behavior.html#increase-pc-and-decrease-pc"><i class="fa fa-check"></i><b>10.3.4</b> Increase PC and Decrease PC</a></li>
+<li class="chapter" data-level="10.3.5" data-path="button-behavior.html"><a href="button-behavior.html#additional-momentary-switches"><i class="fa fa-check"></i><b>10.3.5</b> Additional Momentary Switches</a></li>
+<li class="chapter" data-level="10.3.6" data-path="button-behavior.html"><a href="button-behavior.html#auto-callibration"><i class="fa fa-check"></i><b>10.3.6</b> Auto Callibration</a></li>
+<li class="chapter" data-level="10.3.7" data-path="button-behavior.html"><a href="button-behavior.html#power-down"><i class="fa fa-check"></i><b>10.3.7</b> Power Down</a></li>
+<li class="chapter" data-level="10.3.8" data-path="button-behavior.html"><a href="button-behavior.html#recenter-the-yaw"><i class="fa fa-check"></i><b>10.3.8</b> Recenter the Yaw</a></li>
+<li class="chapter" data-level="10.3.9" data-path="button-behavior.html"><a href="button-behavior.html#show-battery-level"><i class="fa fa-check"></i><b>10.3.9</b> Show Battery Level</a></li>
+<li class="chapter" data-level="10.3.10" data-path="button-behavior.html"><a href="button-behavior.html#secret-button-commands"><i class="fa fa-check"></i><b>10.3.10</b> “Secret” Button Commands</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="optical-sensor-calibration.html"><a href="optical-sensor-calibration.html"><i class="fa fa-check"></i><b>11</b> Optical Sensor Calibration</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="optical-sensor-calibration.html"><a href="optical-sensor-calibration.html#auto-calibrate-all-sensors"><i class="fa fa-check"></i><b>11.1</b> Auto-Calibrate All Sensors</a></li>
+<li class="chapter" data-level="11.2" data-path="optical-sensor-calibration.html"><a href="optical-sensor-calibration.html#auto-calibrate-bell-sensor-only"><i class="fa fa-check"></i><b>11.2</b> Auto-Calibrate Bell Sensor Only</a></li>
+<li class="chapter" data-level="11.3" data-path="optical-sensor-calibration.html"><a href="optical-sensor-calibration.html#save-fine-calibration"><i class="fa fa-check"></i><b>11.3</b> Save Fine Calibration</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="warbl2-settings.html"><a href="warbl2-settings.html"><i class="fa fa-check"></i><b>12</b> WARBL2 Settings</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="warbl2-settings.html"><a href="warbl2-settings.html#battery-voltage"><i class="fa fa-check"></i><b>12.1</b> Battery Voltage</a></li>
+<li class="chapter" data-level="12.2" data-path="warbl2-settings.html"><a href="warbl2-settings.html#ble-status"><i class="fa fa-check"></i><b>12.2</b> BLE status</a></li>
+<li class="chapter" data-level="12.3" data-path="warbl2-settings.html"><a href="warbl2-settings.html#send-bleusb"><i class="fa fa-check"></i><b>12.3</b> Send BLE/USB</a></li>
+<li class="chapter" data-level="12.4" data-path="warbl2-settings.html"><a href="warbl2-settings.html#charge-from-usb-hosts"><i class="fa fa-check"></i><b>12.4</b> Charge From USB Hosts</a></li>
+<li class="chapter" data-level="12.5" data-path="warbl2-settings.html"><a href="warbl2-settings.html#auto-power-off-time"><i class="fa fa-check"></i><b>12.5</b> Auto Power Off Time</a></li>
+<li class="chapter" data-level="12.6" data-path="warbl2-settings.html"><a href="warbl2-settings.html#calibrate-gyro"><i class="fa fa-check"></i><b>12.6</b> Calibrate Gyro</a></li>
+<li class="chapter" data-level="12.7" data-path="warbl2-settings.html"><a href="warbl2-settings.html#recenter-the-yaw-1"><i class="fa fa-check"></i><b>12.7</b> Recenter The Yaw</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">WARBL2 Configuration Tool</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="pressure-and-imu-mapping" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> Pressure and IMU Mapping<a href="pressure-and-imu-mapping.html#pressure-and-imu-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="float">
+<img src="images/Pressure_IMU_Mapping.png" alt="Pressure and IMU Mapping Panel" />
+<div class="figcaption">Pressure and IMU Mapping Panel</div>
+</div>
+<p><em>Breath Pressure</em> and <em>IMU (Gyroscope and Accelerometer)</em> data can be mapped to various <em>MIDI Messages</em>. Click on <em>Pressure Mapping…</em> or <em>IMU Mapping…</em> to see the options.</p>
+<div id="pressure-mapping" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Pressure Mapping<a href="pressure-and-imu-mapping.html#pressure-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="float">
+<img src="images/Pressure_Mapping_Panel.png" alt="Pressure Mapping Panel" />
+<div class="figcaption">Pressure Mapping Panel</div>
+</div>
+<p>This was known as the <em>Expression Panel</em> in earlier versions of the <em>Configuration Tool</em>. It allows mapping of <em>Breath</em> (or <em>Bagpipe Bag</em>) <em>Pressure</em> to various <em>MIDI Messages</em>.</p>
+<div id="force-max-velocity" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Force Max Velocity<a href="pressure-and-imu-mapping.html#force-max-velocity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Turning on the <em>Force Max Velocity</em> switch will cause WARBL to always send <em>MIDI Notes</em> with a <em>Velocity</em> of <strong>127</strong> (the maximum allowed), which will allow <em>Maximum Volume</em> from <em>MIDI Apps</em>.</p>
+<pre><code>Note: Some more sophisticated Apps interpret High Velocity in ways that also affect their Timbre, or various other Effects. 
+
+If this is the case, you may want to uncheck this Switch, which will cause WARBL to send notes with a Velocity of 64 (the middle of the allowed range). This switch has no effect if the Send Pressure as Velocity is selected.
+
+Selecting the Send Pressure as Velocity Switch automatically overrides and turns OFF the Force Max Velocity switch at the top of this panel.</code></pre>
+</div>
+<div id="pitch-expression" class="section level3 hasAnchor" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Pitch Expression<a href="pressure-and-imu-mapping.html#pitch-expression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Turning on the <em>Pitch Expression</em> switch will cause WARBL to send <em>Pitch Bend Messages</em> based on <em>Pressure</em>. This means that for a given <em>MIDI Note</em>, blowing (or squeezing a <em>Bag</em>) <strong>gently</strong> will cause the <em>Note</em> to play slightly <strong>Flat</strong>, while blowing with <strong>excess force</strong> will cause it to be slightly <strong>Sharp</strong>. This is meant to simulate the way that <em>Pressure</em> is used to <em>Fine-Tune the Pitch of Real Instruments</em>, and can make WARBL sound more lifelike.</p>
+</div>
+<div id="pitch-expression-depth" class="section level3 hasAnchor" number="8.1.3">
+<h3><span class="header-section-number">8.1.3</span> Pitch Expression Depth<a href="pressure-and-imu-mapping.html#pitch-expression-depth" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <em>Pitch Expression Depth</em> slider controls the amount of <em>Pitch Bend</em>, which is added to any contributed by <em>Vibrato</em> and <em>Slide</em>, so they can all be used simultaneously.</p>
+</div>
+<div id="override" class="section level3 hasAnchor" number="8.1.4">
+<h3><span class="header-section-number">8.1.4</span> Override…<a href="pressure-and-imu-mapping.html#override" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If <em>Overblowing</em> is not being used, this gives you have the option of changing the <em>Default Pressure Range</em> used for <em>Expression</em>.</p>
+<div class="float">
+<img src="images/Pitch_Expression_Pressure-Range_Override_Panel.png" alt="Pitch Expression Pressure-Range Override Panel" />
+<div class="figcaption">Pitch Expression Pressure-Range Override Panel</div>
+</div>
+<p>By turning on the <em>Override Switch</em> and using the Sliders, you can override the <em>Default Pressure Range</em> used for <em>Pitch Expression</em>.</p>
+<pre><code>Note: This is not available if Overblowing is being used, because in that case the Pressure Range has to be calculated in Real Time based on the current Register and Overblowing settings.</code></pre>
+</div>
+<div id="send-pressure-mapping" class="section level3 hasAnchor" number="8.1.5">
+<h3><span class="header-section-number">8.1.5</span> Send Pressure Mapping<a href="pressure-and-imu-mapping.html#send-pressure-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="float">
+<img src="images/CC_Mapping.png" alt="CC Mapping Panel. The other Mapping Panels are similar" />
+<div class="figcaption">CC Mapping Panel. The other Mapping Panels are similar</div>
+</div>
+<p>WARBL also has the ability to <em>Map Pressure Sensor Values</em> to
+* A MIDI Continuous Controller (CC)
+* Note-On Velocity
+* Channel Pressure, and
+* Key Pressure</p>
+<p>This allows it to function as a <em>MIDI Breath Controller</em>. An example would be to send <em>Pressure</em> data to <strong>CC7</strong> to control the <em>Notes Volumes</em> with <em>Pressure</em>.These <em>Advanced Settings</em> are not needed by many WARBL users.</p>
+<p>The <em>Input Pressure Range</em> can be mapped to the <em>Output Range</em> (<em>CC, Velocity, Channel Pressure,</em> or <em>Key Pressure</em>) using one of three curves:</p>
+<ul>
+<li>Linear</li>
+<li>A Power Curve (Curve 2), or</li>
+<li>An Inverse Power Curve (Curve 3)</li>
+</ul>
+<p>Adjusting the <em>Sliders</em> controls which portion of the overall <em>Breath/Bag Pressure</em> is mapped to which portion of the possible <em>MIDI Output Range</em> of 0-127. When <em>Mapping Pressure to CC</em> you can choose a <em>CC Channel</em> and <em>CC Number</em>.</p>
+<pre><code>NOTE: WARBLE2 will only be sending those Messages if the corresponding Switch in the main Pressure Mapping Panel is turned ON.</code></pre>
+<p>The <em>Received Value</em> field and bar at the bottom show the <em>MIDI Messages</em> received from the WARBLE2 that correspond to the <em>Current Panel</em>. For example, if you are mapping <em>Breath Pressure</em> to <strong>CC 7</strong> on <em>Channel 1</em>, the display will show only those specific messages.</p>
+</div>
+</div>
+<div id="imu-mapping" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> IMU Mapping<a href="pressure-and-imu-mapping.html#imu-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="float">
+<img src="images/IMU_Mapping.png" alt="IMU Mapping Panel" />
+<div class="figcaption">IMU Mapping Panel</div>
+</div>
+<p>The <em>Inertial Measurement Unit (IMU)</em> continuously tracks <em>Acceleration</em> and <em>Angular Rotation</em> in <strong>Three Dimensions</strong>. This information is converted to <em>Roll, Elevation Angle (Pitch),</em> and <em>Yaw</em>, which can be then mapped to <em>MIDI Messages</em>.</p>
+<div id="pitchbend-vibrato" class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Pitchbend Vibrato<a href="pressure-and-imu-mapping.html#pitchbend-vibrato" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There is also an option to send <em>Pitchbend Vibrato</em> by shaking the WARBLE2 along its <em>Long Axis</em>. You can adjust the amount of <em>Shake Vibrato</em> and also select the <em>Direction of Pitchbend</em>:</p>
+<ul>
+<li><em>Up/Down</em> means that the <em>Pitch</em> will be altered <em>both above and below the normal pitch</em>, corresponding to the <em>direction of movement of the WARBL2</em>.</li>
+<li><em>Down/Up</em> has the same effect but <em>the opposite direction of the movement of the device</em>.</li>
+<li><em>Up only</em> causes <em>Pitch</em> to be only <em>raised above the current note</em>, and</li>
+<li><em>Down</em> only causes the pitch to only be <em>flattened</em></li>
+</ul>
+</div>
+<div id="roll-elevation-and-yaw-mapping" class="section level3 hasAnchor" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Roll, Elevation, and Yaw Mapping<a href="pressure-and-imu-mapping.html#roll-elevation-and-yaw-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="float">
+<img src="images/Roll_Mapping.png" alt="Roll Mapping Panel" />
+<div class="figcaption">Roll Mapping Panel</div>
+</div>
+<p>To map <em>Roll, Elevation,</em> or <em>Yaw</em> to <em>CC Messages</em>, turn <strong>ON</strong> the appropriate <em>Switch</em> and then click <em>Map</em>. A <em>Panel similar to the one above</em> will appear, allowing you to select the <em>Input Range</em> as well as the <em>Range</em> of <em>Output CC Values</em>.</p>
+<p>At the bottom a <em>Readout</em> and <em>Bar</em> will display <em>CC Messages Received</em> from the <em>WARBL2</em> that match the <em>Current Settings in the Panel</em></p>
+<pre><code>Note: The Switch on the Previous Panel must also be turned ON to cause the WARBL2 to actually send any Messages.</code></pre>
+<p>For mapping <em>Roll</em> and <em>Yaw</em>, there is an option to <em>center the Input Range</em>, which <em>Ties the Input Sliders Together</em> to keep the <em>Input Range</em> centered on <strong>Zero</strong>.</p>
+<pre><code>Note: It is impossible to Reverse the Output Range of the IMU Mapping in the WARBLE2 by moving the Output Sliders past each other. When they meet in the Middle of the Range they will Merge into one. Moving this to the Right or Left will show the two Yellow Range Limits.</code></pre>
+</div>
+<div id="recentering-yaw" class="section level3 hasAnchor" number="8.2.3">
+<h3><span class="header-section-number">8.2.3</span> Recentering Yaw<a href="pressure-and-imu-mapping.html#recentering-yaw" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><em>Yaw</em> has a tendency to drift slightly over time, so you may want occasionally to <em>Recenter</em> it (i.e. set it to <strong>zero</strong>). It is also often desirable to <em>Recenter the Yaw</em> depending on the <em>Rotation of your Body</em>.</p>
+<p>There are three ways to recenter Yaw:
+* A button in the <em>WARBLE2 Settings Panel</em> will recenter it <em>center</em>
+* You can assign a button action to recenter it (see the Button Behavior panel documentation), or
+* You can use the auto-center yaw option in the yaw mapping panel.</p>
+<p>The auto-center yaw option will reset the yaw to zero when you begin playing after a pause of a certain length of time. You can choose the length of the pause with the Minimum pause slider.</p>
+<p>There is also an option to control the register using the IMU elevation angle. You can choose the total number of registers and the input elevation range. The normal playing range (based on the “transpose” setting) will be in the middle of the range and you will be able to play up to two registers above and below that range. If overblowing is also enabled you will be able to use both methods of register control simultaneously.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="note-trigger-and-register-control-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="drones-control.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
